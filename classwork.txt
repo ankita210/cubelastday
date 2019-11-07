@@ -1,0 +1,40 @@
+1 select * from employees
+2 select department_id, department_name,manager_id as MNG from departments
+
+3 select employee_id, first_name, last_name, phone_number,department_id from employees
+ select  first_name, last_name, phone_number,hire_date ,salary,(salary+salary*0.2) as ANNUAL_sal from employees 
+
+select last_name ||' '|| first_name as full_name, phone_number ||'->'|| email  as CONTACT_DETAILS   from employees
+
+select distinct manager_id from employees
+
+select last_name ||' '|| job_id as EMPLOYEE_AND_TITLE from employees
+
+select  first_name as FN, last_name as LN,salary as SAL, hire_date||' HD' as HD from employees
+select distinct salary from employees
+
+select distinct department_id,job_id from employees
+
+ select first_name,department_id,last_name from employees where last_name like'De Haan'
+
+select * from departments where department_name='Sales'
+
+ select first_name,department_id,last_name,salary from employees where salary>9700
+select  first_name ||last_name as full_name ,salary from employees where salary<6000
+ select first_name,department_id,last_name,salary from employees where salary>8000
+select first_name,department_id,last_name from employees where last_name like'McEwen'
+select * from employees where department_id= null
+select * from departments where department_name='Marketing'
+select  first_name ||' '||last_name as full_name ,hire_date, salary,department_id from employees where first_name not like'%M%'order by department_id
+
+select * from employees where salary between 8000 and 12000 and  commission_pct is not null or department_id not in (40,120,70) and hire_date< '05-June-1987'
+
+select  first_name ||' '||last_name as full_name , salary,commission_pct from employees where commission_pct is null
+select first_name ||' '||last_name as full_name , phone_number ||'->'|| email as contact_details ,salary as Remuneration   from employees  where salary between 9000 and 17000 
+
+25. Write a query in SQL to display the full name (first and last), the phone number and email separated by hyphen, and salary, for those employees whose salary is within the range of 9000 and 17000. The column headings assign with Full_Name, Contact_Details and Remuneration respectively.
+26. Write a query in SQL to display the first and last name, and salary for those employees whose first name is ending with the letter m.
+
+
+
+

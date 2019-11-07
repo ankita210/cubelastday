@@ -1,0 +1,156 @@
+select employee_id,first_name,last_name from employees
+select * from employees
+select * from employees where hire_date='17-jun-87'
+select employee_id,first_name,email,salary from employees where salary>10000
+select employee_id,first_name,email,salary from employees where salary=10000
+select employee_id,first_name,email,salary from employees where salary<>10000
+
+select employee_id,first_name,email,salary from employees where not salary<>10000
+select employee_id,first_name,email,salary,department_id from employees where salary=10000 and department_id=80
+select * from employees where salary=10000
+
+desc employees;
+
+
+select employee_id,salary,commission_pct from employees where salary
+between 10000 and 20000
+
+select employee_id,salary,commission_pct,salary+commission_pct from employees where salary between 10000 and 20000
+
+select employee_id,salary,commission_pct,salary+commission_pct from employees where salary not between 10000 and 20000
+
+select employee_id,commission_pct from employees where commission_pct is null 
+select employee_id,commission_pct from employees where commission_pct is not null 
+
+select first_name||last_name as "Full Name" from employees
+
+select 'Hello '||first_name||' '||last_name||', Welcome to LTI' as Full_Name from employees
+
+Day 2
+
+select * from tab
+select * from employees
+select employee_id,department_id from employees where department_id in(10,20,30,40,60,70,90)
+select * from countries where country_name in('Australia','Canada','france')
+
+select employee_id,department_id from employees where department_id not in(10,20,30,40,60,70,90)
+
+select first_name from employees where first_name like 'S%'
+select first_name from employees where first_name like '%s'
+select first_name from employees where first_name like '%an%'
+select first_name from employees where first_name like '_an%'
+select first_name from employees where first_name like '_an___'
+
+desc employees
+
+select department_id,sum(salary),count(*) from employees group by department_id having sum(salary)>50000
+
+select department_id,sum(salary),count(*) from employees
+where department_id in(30,60,90)
+ group by department_id having sum(salary)>50000 
+
+select department_id,sum(salary),count(*) from employees
+where department_id in(30,60,90)
+ group by department_id
+
+select department_id,sum(salary),count(*) from employees where department_id in(30,60,90)
+ group by department_id having avg(salary)>10000
+
+select department_id,sum(salary),count(*) from employees where department_id in(30,60,90) 
+ group by department_id order by department_id
+
+select department_id,sum(salary),count(*) from employees where department_id in(30,60,90) 
+ group by department_id order by sum(salary) desc
+
+select round(456.50),trunc(456.50) from dual
+
+select * from dual
+
+
+
+select * from employees 
+select employee_id,first_name,hire_date from employees
+order by hire_date desc,first_name 
+
+
+select instr('Corporate Floor','or') from dual
+select instr('Corporate Floor','or',7) from dual
+
+
+select employee_id,to_char(hire_date,'YYYY') from employees
+select employee_id,to_char(hire_date,'MM') from employees
+select employee_id,to_char(hire_date,'Month') from employees
+select employee_id,to_char(hire_date,'MONTH') from employees
+select employee_id,to_char(hire_date,'MON') from employees
+
+
+select employee_id,salary,commission_pct,salary+nvl(commission_pct,0)
+from employees
+select coalesce(null,100,0) from dual
+select coalesce(null,null,1,null,100,0) from dual
+
+create table EmpContacts
+(
+   emp_id int,emp_name varchar2(10),mobile varchar2(10),
+   office varchar2(10),home  varchar2(10)
+)
+
+insert all 
+into EmpContacts(emp_id,emp_name,mobile,office,home) values(1001,'John',12345,67876,null)
+into EmpContacts(emp_id,emp_name,mobile,office,home) values(1002,'Jack',null,67876,null)
+into EmpContacts(emp_id,emp_name,mobile,office,home) values(1003,'Mark',null,null,67564)
+into EmpContacts(emp_id,emp_name,mobile,office,home) values(1004,'Andrew',12345,67876,null)
+select * from dual
+select * from EmpContacts
+select emp_id,emp_name,coalesce(mobile,office,home) from EmpContacts
+
+select * from employees natural join departments 
+select * from employees join departments using(manager_id)
+select * from departments
+
+
+
+select employee_id,first_name,d.department_id,department_name,e.manager_id
+
+from employees e,departments d
+
+select employee_id,first_name,d.department_id,department_name,e.manager_id
+from employees e,departments d
+where d.department_id>30
+
+select * from departments
+inner join locations
+on departments.location_id=locations.location_id
+
+select * from departments,locations where departments.location_id=locations.location_id
+
+select * from departments,locations where departments.location_id>locations.location_id
+
+select * from tab
+select department_id,manager_id from departments
+select * from departments
+select * from employees
+select employee_id,e.manager_id,d.department_id from employees e
+left outer join
+departments d
+on e.manager_id=d.manager_id
+
+select employee_id,e.manager_id,d.department_id from employees e
+right outer join
+departments d
+on e.department_id=d.department_id
+
+
+
+select employee_id,e.manager_id,d.department_id from employees e
+full outer join
+departments d
+on e.department_id=d.department_id
+
+select employee_id,first_name,manager_id from employees
+
+select e.employee_id,e.first_name,e.manager_id,m.first_name
+from employees e
+join
+employees m
+on e.manager_id=m.employee_id

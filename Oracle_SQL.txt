@@ -1,0 +1,654 @@
+				Day 1
+
+create table Employee
+(
+   PSNo number(8) primary key,
+   Name varchar2(20) not null,
+   Salary number(6,2),
+   PrId varchar2(5),
+   constraint chkSal check(Salary between 10000 and 30000),
+   constraint fkProject foreign key(PrId) references Project(ProjID)
+)
+
+create table Project
+(
+    ProjID varchar2(5),
+    ProjName varchar2(20),
+    Duration number
+    constraint pk1 primary key(ProjID)
+)
+
+select * from Project
+select * from Employee
+-- to view table description
+
+desc Project
+
+-- alter 
+--1. add new column to the table
+desc Employee
+alter table Employee add age number;
+alter table Employee add(City varchar2(50),contactno varchar2(10))
+desc Employee
+select * from Employee
+select * from Employee where age is not null
+
+-- add constraint
+delete Employee
+alter table Employee modify(age not null)
+desc Employee
+
+-- add constraint 
+alter table Employee add constraint chkAge check(age between 18 and 25)
+
+insert into Employee values(1,'Jack',11000,'P003',22,'NY','3524524189')
+
+-- 
+desc Project
+desc Employee
+alter table Employee add constraint fkProj foreign key(prid) refrences Project(ProjID)
+
+select * from Employee
+select * from Project
+delete Project where ProjID='P003'
+delete Employee 
+
+alter table Employee drop constraint fkProj
+
+alter table Employee modify constraint fkProj foreign key(prid) references Project(ProjID) on delete cascade set null
+
+select * from user_constraints
+
+alter table Employee disable constraint chkage
+alter table Employee enable constraint chkage
+
+
+  delete Project where ProjID='P00 '	 
+  select * from Employee	 
+  delete Employee	 
+  delete Project where ProjID='P00 '	 
+  alter table Employee add constraint fkProj foreign key(prid) refrences Project(ProjID) on delete ca	 
+  alter table Employee add constraint fkProj foreign key(prid) refrences Project(ProjID) on delete cas	 
+  alter table Employee add constraint fkProj foreign key(prid) references Project(ProjID) on delete ca	 
+  alter table Employee modify constraint fkProj foreign key(prid) references Project(ProjID) on delete	 
+  alter table Employee drop constraint fkProj	 
+  alter table Employee add constraint fkProj foreign key(prid) references Project(ProjID) on delete ca	 
+  alter table Employee drop constraint fkProj	 
+  alter table Employee modify constraint fkProj foreign key(prid) references Project(ProjID) on delete	 
+  alter table Employee modify constraint fkProj foreign key(prid) references Project(ProjID)	 
+  alter table Employee modify constraint fkProj foreign key(prid) references Project(ProjID) on delete	 
+  -- select * from user_constraints	 
+
+  alter table Employee disable constraint chkage	 
+  alter table Employee enable constraint chkage	 
+  alter table Employee enable constraint chkage	 
+  insert into Employee values(1045,'Albert',1 000,'P001', 4,'Mumbai','1 45145 1')	 
+  insert into Employee values(1045,'Albert',1 000,'P001', 4,'Mumbai','1 45145 1')	 
+  insert into Employee(PSNO,NAME,AGE) values(1005,'Flora',1 000)	 
+  insert into Employee(PSNO,NAME,AGE) values(1005,'Flora', 1)	 
+  select * from Employee	 
+  delete Employee where PSNO=1005	 
+  select * from Employee	 
+  insert into Employee values(1045,'Albert',1 000,'P001', 4,'Mumbai','1 45145 1')	 
+  select * from Employee	 
+  insert into Employee values(1  4,'Maxwell',15500,'P001', 0,'Delhi','154 145 1')	 
+  select * from Employee
+
+  insert into Employee values(1545,'Mark',14500,'P00 ', 5,'Banglore','154 54 11')	 
+  select * from Employee	 
+  create table Employee_Backup as select * from Employee	 
+  select * from Employee_Backup	 
+  select * from Employee	 
+  merge into Employee_Backup x using(select * from Employee) y on(x.psno=y.psno) when matched th	 
+  merge into Employee_Backup x using(select * from Employee) y on(x.psno=y.psno) when matched th	 
+  select * from Employee	 
+  update Employee set age=   where psno=1  4	 
+  select * from Employee	 
+  select * from Employee_Backup	 
+  merge into Employee_Backup x using(select * from Employee) y on(x.psno=y.psno) when matched th	 
+  select * from Employee_Backup	 
+  insert into Employee values(1  5,'James',18000,'P00 ', 4,'Banglore','17894 11 1')	 
+  select * from Employee
+
+  select * from Employee_Backup	 
+  merge into Employee_Backup x using(select * from Employee) y on(x.psno=y.psno) when matched th	 
+  select * from Employee_Backup	 
+  select * from emp	 
+  select empno,ename,job from emp	 
+  select * from emp where empno=7499	 
+  select * from dept	 
+  select loc from dept where dname='accounting'	 
+  select * from dept	 
+  select loc from dept where dname='ACCOUNTING'	 
+  select * from salgrade	 
+  select * from emp	 
+  select * from emp where sal>= 500 and sal<=4500	 
+  select * from emp where job='MANAGER' or job='ANALYST'	 
+  select ename from emp where job='manager' and sal>=10000	 
+
+  select ename from emp where job='MANAGER' and sal>=10000	 
+  select ename from emp where job='MANAGER' and sal between 5000 and 10000	 
+  select ename from emp where job='MANAGER' and sal between 1000 and 5000	 
+  select * from emp	 
+  select * from product	 
+  select * from ord	 
+  select * from customer	 
+  select * from ord	 
+  select * from ord where custid in(100,101,10 ,10 ,104,105,106,107)	 
+  select * from ord	 
+  select * from ord where custid in(100,101,10 ,10 ,109,110)	 
+  select * from customer	 
+  select custid,cname,address where city in('BURLINGAME','CUPERTINO')	 
+  select custid,cname,address from customer where city in('BURLINGAME','CUPERTINO')	 
+  select custid,name,address from customer where city in('BURLINGAME','CUPERTINO')	 
+
+  select custid,name,address,city from customer where city in('BURLINGAME','CUPERTINO')	 
+  select custid,name,address,city from customer where city not in('BURLINGAME','CUPERTINO')	 
+  select ename from emp where job='MANAGER' and sal not between 1000 and 5000	 
+  select ename from emp where job='MANAGER' and sal not between  000 and 4000	 
+  select * from bonus	 
+  select * from item	 
+  select * from customer	 
+  select * from customer where state<>'CA'	 
+  select * from item	 
+  select * from customer where state!='CA'	 
+  select * from item	 
+  select * from product	 
+  select * from price	 
+  select * from price where startdate='01-JUN-86'	 
+  select * from customer	 
+
+  select name||' lives in '||city from customer	 
+  select name||' lives in '||city as Customer Address from customer	 
+  select name||' lives in '||city as 'Customer Address' from customer	 
+  select name||' lives in '||city as "Customer Address" from customer	 
+  select name,city from customer	 
+  select name||' lives in '||city as "Customer Address" from customer	 
+  select 45+ 0 from dual	 
+  select * from dual	 
+  select 45|| 0 from dual	 
+  select * from Employee	 
+  insert all into Employee values(1875,'Brad',15000,'P00 ', 0,'CA','78545 4189') into Employee v	 
+  insert all into Employee values(1875,'Brad',15000,'P00 ', 0,'CA','78545 4189') into Employee v	 
+  select * from Employee	 
+  select * from Employee_Backup	 
+  delete Employee_Backup	 
+
+  select * from Employee_Backup	 
+  select * from Employee_Backup	 
+  select * from Employee	 
+  insert all into Employee_Backup values(psno,name,salary,prid,age,city,contactno) into Employee_B	 
+  select * from Employee_Backup	 
+  select count(*) from Employee_Backup	 
+  delete Employee_Backup	 
+  select psno,name,salary,prid,age,city,contactno from Employee	 
+  insert all into Employee_Backup values(psno,name,salary,prid,age,city,contactno) select psno,name,	 
+  delete Employee_Backup	 
+  select psno,name,salary,prid,age,city,contactno from Employee	 
+  insert all into Employee_Backup values(psno,name,salary,prid,age,city,contactno) select psno,name,	 
+  select * from emp	 
+  select * from emp where comm is null	 
+  select * from emp where comm is not null	 
+
+  select * from customer	 
+  select * from customer order by creditlimit	 
+  select * from customer order by creditlimit desc	 
+   	-- select * from customer order by city	 
+   	select * from customer order by city	 
+   	select * from emp	 
+   	select * from emp order by job	 
+   	select * from emp order by job,sal	 
+   	select * from emp order by job,sal desc	 
+  	select sum(sal) from emp	 
+  	select sum(sal) from emp where job='CLERK'	 
+  	select max(sal) from emp where job='CLERK'	 
+  	select min(sal) from emp where job='CLERK'	 
+  	select avg(sal) from emp where job='MANAGER'	 
+   	select count(*) from emp	 
+
+  	select sal,deptno from emp order by deptno	 
+  	select * from emp	 
+  	select count(*) from emp	 
+  	select * from emp	 
+  	select deptno,sum(sal) from emp group by deptno	 
+  	select deptno,sum(sal) from emp group by deptno order by deptno	 
+   	select deptno,count(*) from emp group by deptno	 
+   	select * from emp group by deptno	 
+  	select deptno,max(sal) from emp group by deptno	 
+  	select deptno,max(sal) from emp group by deptno	 
+  	select empno,deptno,max(sal) from emp group by deptno	 
+  	select empno,deptno,max(sal) from emp group by deptno	 
+  	select * from emp	 
+  	select deptno,job,sum(sal) from emp group by deptno,job	 
+  	select * from emp	 
+
+  	select deptno,job,sum(sal) from emp group by job,deptno	 
+  	select deptno,job,sum(sal) from emp group by job,deptno order by deptno	 
+  	select * from emp	 
+   	select deptno,job,sum(sal) from emp group by job,deptno order by job	 
+  	select deptno,max(sal) from emp group by deptno order by max(sal)	 
+  	select deptno,max(sal) from emp group by deptno order by max(sal) desc	 
+  	select deptno,sum(sal) from emp group by deptno	 
+  	select deptno,sum(sal) from emp group by deptno where sum(sal)>10000	 
+  	select deptno,sum(sal) from emp group by deptno where sal> 000	 
+  	select deptno,sum(sal) from emp group by deptno having sum(sal)>10000	 
+   	select deptno,sum(sal) from emp where deptno in(10, 0) group by deptno having sum(sal)>1000	 
+  	select * from emp	 
+  	select * from emp where ename='K%'	 
+  	select * from emp where ename like'K%'	 
+  	select * from emp where ename like'%e'	 
+
+
+
+
+------- Like operator -  Wild card characters(% and _)
+
+-- display all the employees whose names start with 'K'
+select * from emp where ename like'K%'
+
+-- display all the employees whose names ends with 'N'
+select * from emp where ename like'%N'
+
+-- display all the employees whose names contains 'N'
+select * from emp where ename like'%N%'
+
+-- display all the employees whose names which has 5 letters
+select * from emp where ename like '_____'
+
+-- display all the employees whose names which has 5 letters and starts with S
+select * from emp where ename like 'S____'
+
+
+select upper('simant') from dual
+select ename from emp
+select lower(ename) from emp
+
+select avg(sal) from emp
+select trunc(avg(sal)) from emp
+select round(avg(sal), ) from emp
+select round(avg(sal), ) from emp
+select trunc( 5.67),round( 5.67) from dual
+select trunc( 5. 4),round( 5. 4) from dual
+
+
+select instr('oracle is a database','a', ) from dual
+
+select instr('Corporate floor','or',1, ) from dual
+select instr('Corporate floor','or',1, ) from dual
+
+
+select sysdate from dual
+
+select sysdate+1 from dual
+
+select add_months(sysdate,1) from dual
+
+select sum(comm) from emp
+
+select job,deptno from emp group by job
+
+
+select deptno,max(sal) from emp group by deptno
+
+select deptno,max(sal) from emp group by deptno
+
+select * from emp
+select deptno,job,sum(sal) from emp group by job,deptno order by deptno
+
+select deptno,job,sum(sal) from emp group by job,deptno order by job
+
+-- display highest salary department wise in descending order by salary
+select deptno,max(sal) from emp group by deptno order by max(sal) desc
+
+--- having clause
+select deptno,sum(sal) from emp group by deptno
+
+-- display the sum of salary for each department where sum of the salary is greater than 10000
+
+-- this is wrong
+select deptno,sum(sal) from emp group by deptno where sum(sal)>10000
+
+select deptno,sum(sal) from emp group by deptno having sum(sal)>10000
+
+select deptno,sum(sal) from emp where deptno in(10, 0) group by deptno having sum(sal)>1000
+
+
+  	select * from emp	 
+  	select * from emp where ename like'%E'	 
+  	select * from emp where ename like'%N'	 
+  	select * from emp where ename like'%N%'	 
+  	select * emp where ename='_____'	 
+  	select * emp where ename like '_____'	 
+  	select * from emp where ename like '_____'	 
+  	select * from emp where ename like 'S____'	 
+  	select upper('simant') from dual	 
+  	select ename from emp	 
+  	select lower(ename) from emp	 
+  	select avg(sal) from emp	 
+  	select trunc(avg(sal)) from emp	 
+  	select avg(sal) from emp	 
+  	select trunc(avg(sal)) from emp	 
+
+  	select round(avg(sal)) from emp	 
+  	select round(avg(sal), ) from emp	 
+  	select trunc( 5.67),round( 5.67) from dual	 
+  	select avg(sal) from emp	 
+  	select round(avg(sal), ) from emp	 
+   	select trunc( 5. 4),round( 5. 4) from dual	 
+  	select instr('oracle is a database','a') from dual	 
+  	select sysdate from dual	 
+  	select sysdate+1 from dual	 
+  	select add_month(sysdate,1) from dual	 
+  	select add_months(sysdate,1) from dual	 
+  	select instr('oracle is a database','a', ) from dual	 
+  	select instr('Corporate floor','or') from dual	 
+  	select instr('Corporate floor','or', ) from dual	 
+  	select instr('Corporate floor','or',1, ) from dual	 
+
+  	select instr('Corporate floor','or',1, ) from dual	 
+
+
+select sysdate from dual
+
+select sysdate+1 from dual
+
+select add_months(sysdate,1) from dual
+
+
+
+
+
+
+
+
+
+
+
+select deptno,max(sal) from emp group by deptno
+
+select deptno,max(sal) from emp group by deptno
+
+select * from emp
+select deptno,job,sum(sal) from emp group by job,deptno order by deptno
+
+select deptno,job,sum(sal) from emp group by job,deptno order by job
+
+-- display highest salary department wise in descending order by salary
+select deptno,max(sal) from emp group by deptno order by max(sal) desc
+
+--- having clause
+select deptno,sum(sal) from emp group by deptno
+
+-- display the sum of salary for each department where sum of the salary is greater than 10000
+
+-- this is wrong
+select deptno,sum(sal) from emp group by deptno where sum(sal)>10000
+
+select deptno,sum(sal) from emp group by deptno having sum(sal)>10000
+
+select deptno,sum(sal) from emp where deptno in(10,20) group by deptno having sum(sal)>1000
+
+
+-----------------Subqueries
+
+--Find out who has the salary greater than the employee 'JONES'
+
+select ename from emp where sal>(select sal from emp where ename='JONES')
+
+-- find out who has the salary greater than average salary of all the department
+
+select * from emp where sal>(select avg(sal) from emp group by deptno)
+
+-- in, any,all
+
+
+select * from emp where sal>all(select avg(sal) from emp group by deptno)
+select * from emp where sal>all(1566.66,2175,2916.66)
+select * from emp where sal>1566.66 and sal>2175 and sal>2916.66
+
+select * from emp where sal>(select max(avg(sal)) from emp group by deptno)
+
+select * from emp where sal>any(select avg(sal) from emp group by deptno)
+select * from emp where sal>any(1566.66,2175,2916.66)
+select * from emp where sal>1566.66 or sal>2175 or sal>2916.66
+
+--- display all employee whose job is same as 'CLARK'
+
+select * from emp where job=(select job from emp where ename='CLARK')
+
+--display employee details for clerk job and who salary is greater than the salary earned by the employee 7782
+
+select * from emp where job='CLERK' and sal>(select sal from emp where empno=7782)
+
+
+-- display all employees whose salary is equal to lowest salary
+select * from emp where sal=(select min(sal) from emp)
+
+
+-- display all employees who salary is lowest in each department
+
+select * from emp where sal in(select min(sal) from emp group by deptno)
+
+
+
+  -- null values in subquery
+
+
+
+select * from emp
+
+select empno,ename,mgr from emp where empno not in (select mgr from emp)
+
+select empno,ename,mgr from emp where empno not in (select mgr from emp where mgr is null)
+
+select empno,ename,mgr from emp where empno not in (select nvl(mgr,0) from emp)
+
+
+--  Multi-column sub-query
+
+select ename,mgr,deptno from emp where mgr in (select mgr from emp where mgr=7839)
+
+select ename,mgr,deptno from emp where (mgr,deptno) in (select mgr,deptno from emp where mgr=7839)
+
+
+-- Correlated Subqueries:
+
+select empno,ename,deptno,sal
+from emp x
+where sal>(select avg(sal) from emp 
+           where deptno=x.deptno) 
+order by deptno
+
+select * from emp
+
+-- exists operator
+
+-- query to find employees who have at least one person reporting to them
+
+select empno,ename,mgr,job,deptno from emp x
+where exists(select 'A' from emp where mgr=x.empno)
+order by deptno
+
+select * from emp
+
+-- query to find department details that have employees assigned to
+select * from dept d
+where exists(select * from emp where deptno=d.deptno)
+
+
+-- query to find employees who have at least one person reporting to them
+
+select empno,ename,mgr,job,deptno from emp x
+where exists(select 'A' from emp where mgr=x.empno)
+order by deptno
+
+select * from emp
+
+-- query to find department details that have employees assigned to
+select * from dept d
+where exists(select * from emp where deptno=d.deptno)
+
+
+-- Retrieving data from multiple tables
+--Natural Join
+
+select * from emp natural join dept
+
+select * from emp natural join salgrade
+
+select * from salgrade
+
+
+select * from emp natural join dept where deptno=10
+
+select * from emp natural join dept
+
+-- natural joins with using clause
+
+select * from emp natural join dept using(deptno)
+
+
+CREATE TABLE category(
+  category_id number(3) PRIMARY KEY,
+  category_name VARCHAR(25)
+);
+INSERT INTO category VALUES (1,'Mobiles');
+INSERT INTO category VALUES (2,'Laptops');
+INSERT INTO category VALUES (3,'Tablet');
+INSERT INTO category VALUES (4,'Cameras');
+INSERT INTO category VALUES (5,'Gaming');
+
+CREATE TABLE products(
+  category_id number(3) REFERENCES category(category_id),
+  product_name VARCHAR(25)
+);
+
+INSERT INTO products VALUES (1,'Nokia');
+INSERT INTO products VALUES (1,'Samsung');
+INSERT INTO products VALUES (2,'HP');
+INSERT INTO products VALUES (2,'Dell');
+INSERT INTO products VALUES (3,'Apple');
+INSERT INTO products VALUES (4,'Nikon');
+INSERT INTO products VALUES (NULL,'Playstation');
+
+select * from category;
+select * from products;
+
+-- inner join :  implicit and explicit
+
+-- explicit
+select * from products
+inner join category
+on products.category_id=category.category_id
+
+-- implicit inner join
+select * from products,category where products.category_id=category.category_id
+select * from products,category where products.category_id>category.category_id
+
+
+--Outer join
+-- Left outer join: 
+select * from products left outer join category
+on products.category_id=category.category_id
+
+select * from category
+-- right outer join
+select * from products right outer join category
+on products.category_id=category.category_id
+
+
+-- full outer join
+select * from products full outer join category
+on products.category_id=category.category_id
+
+select * from products
+select * from category
+
+
+-- Self Join
+select * from emp
+
+select e.empno,e.ename,e.mgr,m.ename from emp e
+join
+emp m
+on e.mgr=m.empno
+
+
+-- Views
+
+select * from vu_emp
+select * from emp where empno not in(select empno from vu_emp)
+
+update vu_emp set sal=sal+500 
+
+select * from emp
+
+-Complex views:
+desc products
+desc category
+
+
+create view vu_cmplx 
+as
+select product_name,category_name from products
+inner join category
+on products.category_id=category.category_id
+
+
+select * from vu_cmplx
+
+update vu_cmplx set category_name='USB'
+
+
+
+-- Inline views
+What is an Inline View ?
+************************
+
+When we use SQL Subquery in the FROM clause of the SELECT statement it is called as an Inline View.
+In - Line Views are used to simplify complex queries by removing join operations and filtering several seperate queries into a single query.
+An Inline View is a construct in Oracle SQL where we can place a query in the SQL FROM clause just as if the query was a table name. This query is enclosed in parenthesis and may be given an alias name. The columns selected in the subquery can be referenced in the parent query.
+
+To make it more simple,
+An Inline View is a Subquery in the FROM Clause of a SELECT statement.
+
+Inline Views are always executed prior to the containing query.After execution,the containing query interacts with an inline view as if it an in-memory table.
+If inline views are nested,the innermost inline view is executed first.
+
+In Short --
+A Subquery in the FROM Clause of a SELECT statement is 
+called a Inline View and a Subquery 
+in the WHERE Clause of a SELECT statement is called a Nested Subquery.
+
+
+select * from (select * from emp)
+
+-- query to display the first 3 employees hired
+
+
+select * from (select ename,hiredate from emp order by hiredate) where rownum<=3
+
+
+select * from emp  where rownum=1
+
+-- query to display department details with employee count in each department
+
+select * from (select deptno,count(*) emp_count from emp group by deptno) 
+
+
+
+SELECT deptno,count(*) emp_count
+         FROM emp
+         GROUP BY deptno
+
+
+SELECT em.deptno,dept.dname,em.emp_count
+FROM 
+(SELECT deptno,count(*) emp_count FROM emp GROUP BY deptno) em,dept
+WHERE dept.deptno = em.deptno
+
+
+
+
+
+

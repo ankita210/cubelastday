@@ -1,0 +1,189 @@
+declare
+empname varchar2(20):='Simant';
+num1 number:=:n;
+num2 number:=20;
+begin
+  dbms_output.put_line('Hello '||empname);
+  dbms_output.put_line(num1+num2);
+end;
+
+----------
+declare 
+fname employees.first_name%type;
+lname employees.last_name%type;
+empid number:=:Enter_ID;
+begin
+select first_name,last_name into fname,lname from employees where employee_id=empid;
+
+dbms_output.put_line(fname||' '||lname);
+end;
+-------
+declare 
+emp employees%rowtype;
+empid number:=102;
+begin
+select * into emp from employees where employee_id=empid;
+
+dbms_output.put_line(emp.first_name||' '||emp.last_name||' '||emp.hire_date);
+end;
+
+select * from departments
+select * from employees
+select * from locations
+
+select location_id,city,
+( case city
+  when 'Roma' then 'RM'
+  when 'Venice' then 'VN'
+  when 'Tokyo' then 'TK'
+  ELSE 'UNKNOWN'
+  end
+ ) SHORT_CITY
+ from locations
+
+------
+select min(salary),max(salary) from employees
+select employee_id,first_name,salary,
+(
+  case when salary<10000 then 'LOW'
+       when salary between 10000 and 15000 then 'Medium'
+       when salary>15000 then 'High'
+       else 'N/A'
+   END
+) Salary
+from employees
+
+
+--------
+declare
+amt number:=-450;
+begin
+  if amt<0 then
+     goto lbl;
+  end if;
+  if amt>10000 then
+       amt:=amt-amt*0.5;
+      dbms_output.put_line('Please pay '||amt);
+  elsif amt<10000 and amt>5000 then
+      amt:=amt-amt*0.2;
+      dbms_output.put_line('Please pay '||amt);
+  else 
+      dbms_output.put_line('No discount');
+end if;
+<<lbl>>
+--null;
+dbms_output.put_line('Invalid Amount');
+end;
+----
+BEGIN 
+FOR n_index IN 1 .. 10 
+ LOOP 
+  -- skip odd numbers 
+  IF MOD( n_index, 2 ) = 1 THEN 
+     CONTINUE; 
+  END IF; 
+  DBMS_OUTPUT.PUT_LINE( n_index ); 
+ END LOOP;
+END;
+------------
+SET SERVEROUTPUT ON
+DECLARE 
+  VAR_ENAME VARCHAR2(20);
+BEGIN
+  SELECT first_name INTO VAR_ENAME FROM EMPLOYEES WHERE EMPLOYEE_ID=100;
+  DBMS_OUTPUT.PUT_LINE('EMPLOYEE NAME: '||VAR_ENAME);
+  EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('There is no Employee with this ID.');
+END;
+--------------
+begin
+update employees set salary=salary+salary*0.1 where department_id=30;
+dbms_output.put_line(sql%rowcount||' records affected.');
+end;
+
+
+declare 
+fname employees.first_name%type;
+lname employees.last_name%type;
+begin
+select first_name,last_name into fname,lname from employees
+where department_id=2000;
+dbms_output.put_line(fname||' '||lname);
+  exception 
+   when no_data_found then
+      dbms_output.put_line('data not found');
+   when too_many_rows then
+      dbms_output.put_line('too many rows retrieved');
+end;
+
+declare
+var_empno employees.employee_id%type;
+var_ename employees.first_name%type;
+var_sal employees.salary%type;
+CURSOR EMP_CUR IS SELECT employee_id, first_name, salary
+ FROM EMPLOYEES where employee_id=5000;
+BEGIN
+  OPEN EMP_CUR;
+  LOOP
+    FETCH EMP_CUR INTO var_empno,var_ename,var_sal;
+    EXIT WHEN EMP_CUR%NOTFOUND;
+    IF var_sal>5000 THEN 
+      DBMS_OUTPUT.PUT_LINE(var_empno||' '||var_ename||' '||var_sal);
+    ELSE
+      DBMS_OUTPUT.PUT_LINE(var_ename|| 'salary is less than 5000');
+    END IF;
+  END LOOP;
+    
+    CLOSE EMP_CUR;
+    DBMS_OUTPUT.PUT_LINE('DONE');
+END;
+
+---------
+declare
+var_empno employees.employee_id%type;
+var_ename employees.first_name%type;
+var_sal employees.salary%type;
+VAR_DEPT EMPLOYEES.DEPARTMENT_ID%TYPE;
+CURSOR EMP_CUR IS SELECT employee_id, first_name, salary,DEPARTMENT_ID
+ FROM EMPLOYEES ORDER BY DEPARTMENT_ID;
+BEGIN
+  OPEN EMP_CUR;
+  LOOP
+    FETCH EMP_CUR INTO var_empno,var_ename,var_sal,VAR_DEPT;
+    EXIT WHEN VAR_DEPT>30;
+    IF var_sal>5000 THEN 
+      DBMS_OUTPUT.PUT_LINE(var_empno||' '||var_ename||' '||var_sal);
+    ELSE
+      DBMS_OUTPUT.PUT_LINE(var_ename|| 'salary is less than 5000');
+    END IF;
+  END LOOP;
+    
+    CLOSE EMP_CUR;
+    DBMS_OUTPUT.PUT_LINE('DONE');
+END;
+
+
+select department_id,department_name
+ from departments order by department_id
+
+select count(*) from employees where department_id=20
+
+declare
+  cursor cur1_dept is select department_id,department_name
+ from departments order by department_id;
+  cursor cur1_emp(par1_deptno varchar2) is select first_name,salary from employees where department_id=par1_deptno order by first_name;
+  var_total_salary number(10,2);
+begin
+  for r1_dept in cur1_dept
+ loop
+    dbms_output.put_line('Department: '||r1_dept.department_id||' - '||r1_dept.department_name);
+    var_total_salary:=0;
+    for r1_emp in cur1_emp(r1_dept.department_id)
+    loop
+      dbms_output.put_line('Name: '||r1_emp.first_name||' Salary: '||r1_emp.salary);
+      var_total_salary:=var_total_salary+r1_emp.salary;
+    end loop;
+    dbms_output.put_line('Total Salary for Dept: '||r1_dept.department_id||' is: '||var_total_salary);
+ end loop;
+end;

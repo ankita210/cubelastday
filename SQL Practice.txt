@@ -1,0 +1,742 @@
+
+1.Create a query to display all the data from the Employees table.
+2.Create a query to display the department number, department name, and manager number. Name the last column (manager number) heading as “MNG” (Employees table).
+3.Create a query to display the employee number, first name, last name, phone number and department number (Employees table).
+4.Create a query to display the first name, last name, hire date, salary, and salary after a raise of 20%. Name the last column (salary after a raise) heading as “ANNUAL_SAL” (Employees table).
+5.Create a query to display the last name concatenated with the first name, separated by space, and the telephone number concatenated with the email address, separated by hyphen. Name the column headings “FULL_NAME” and “CONTACT_DETAILS” respectively (Employees tables).
+6.Create a query to display the unique manager numbers from Employees table.
+7.Create a query to display the last name concatenated with job_id column, separated by space. Name this column heading as “EMPLOYEE_AND_TITLE” (Employees table).
+8.Create a query to display the first name, last name, salary, and hire date concatenated with the literal string “HD”, separated by space. Name the column headings “FN”, “LN”, “SAL”, and “HD” respectively (Employees table).
+9.Create a query to display the unique salaries in Employees tables.
+10.Create a query to display the unique combination of values in department_id and job_id columns (Employees table).
+
+14. Display the first name and department number for all customers whose last name is “De Haan” (Employees table).
+15. Display all data from Departments table for Sales department (department_name column).
+16. Display the first name, last_name, department number and salary for all employees who earn more than 9700 (Employees table).
+17. Write a query in SQL to display the full name (first and last name), and salary for those employees who earn below 6000
+18. Write a query in SQL to display the first and last_name, department number and salary for those employees who earn more than 8000.
+19. Write a query in SQL to display the first and last name, and department number for all employees whose last name is “McEwen”.
+20. Write a query in SQL to display all the information for all employees without any department number.
+21. Write a query in SQL to display all the information about the department Marketing.
+22. Write a query in SQL to display the full name (first and last), hire date, salary, and department number for those employees whose first name does not containing the letter M and make the result set in ascending order by department number.
+23. Write a query in SQL to display all the information of employees whose salary is in the range of 8000 and 12000 and commission is not null or department number is except the number 40, 120 and 70 and they have been hired before June 5th, 1987. 
+24. Write a query in SQL to display the full name (first and last name), and salary for all employees who does not earn any commission.
+25. Write a query in SQL to display the full name (first and last), the phone number and email separated by hyphen, and salary, for those employees whose salary is within the range of 9000 and 17000. The column headings assign with Full_Name, Contact_Details and Remuneration respectively.
+26. Write a query in SQL to display the first and last name, and salary for those employees whose first name is ending with the letter m.
+27. Write a query in SQL to display the full name (first and last) name, and salary, for all employees whose salary is out of the range 7000 and 15000 and make the result set in ascending order by the full name.
+28. Write a query in SQL to display the full name (first and last), job id and date of hire for those employees who was hired during November 5th, 2007 and July 5th, 2009.
+29. Write a query in SQL to display the the full name (first and last name), and department number for those employees who works either in department 70 or 90.
+30. Write a query in SQL to display the full name (first and last name), salary, and manager number for those employees who is working under a manager.  
+31. Write a query in SQL to display all the information from Employees table for those employees who was hired before June 21st, 2002. 
+32. Write a query in SQL to display the first and last name, email, salary and manager ID, for those employees whose managers are hold the ID 120, 103 or 145.
+33. Write a query in SQL to display all the information for all employees who have the letters D, S, or N in their first name and also arrange the result in descending order by salary.
+34. Write a query in SQL to display the full name (first name and last name), hire date, commission percentage, email and telephone separated by '-', and salary for those employees who earn the salary above 11000 or the seventh digit in their phone number equals 3 and make the result set in a descending order by the first name.
+35. Write a query in SQL to display the first and last name, and department number for those employees who holds a letter s as a 3rd character in their first name.
+36. Write a query in SQL to display the employee ID, first name, job id, and department number for those employees who is working except the departments 50,30 and 80.
+37. Write a query in SQL to display the employee Id, first name, job id, and department number for those employees whose department number equals 30, 40 or 90.
+38. Write a query in SQL to display the ID for those employees who did two or more jobs in the past.
+39. Write a query in SQL to display job ID, number of employees, sum of salary, and difference between highest salary and lowest salary for a job.
+40. Write a query in SQL to display job ID for those jobs that were done by two or more for more than 300 days.
+41. Write a query in SQL to display the country ID and number of cities in that country we have.
+42. Write a query in SQL to display the manager ID and number of employees managed by the manager.
+43. Write a query in SQL to display the details of jobs in descending sequence on job title.
+44. Write a query in SQL to display the first and last name and date of joining of the employees who is either Sales Representative or Sales Man.
+45. Write a query in SQL to display the average salary of employees for each department who gets a commission percentage
+46. Write a query in SQL to display those departments where any manager is managing 4 or more employees.
+47. Write a query in SQL to display those departments where more than ten employees work who got a commission percentage.
+48. Write a query in SQL to display the employee ID and the date on which he ended his previous job.
+49. Write a query in SQL to display the details of the employees who have no commission percentage and salary within the range 7000 to 12000 and works in that department which number is 50. 
+50. Write a query in SQL to display the job ID for those jobs which average salary is above 8000.
+51. Write a query in SQL to display job Title, the difference between minimum and maximum salaries for those jobs which max salary within the range 12000 to 18000.
+52. Write a query in SQL to display all those employees whose first name or last name starts with the letter D.
+53. Write a query in SQL to display the details of jobs which minimum salary is greater than 9000.
+54. Write a query in SQL to display those employees who joined after 7th September, 1987.
+
+55. Write a query in SQL to display the first name, last name, department number, and department name for each employee.
+56. Write a query in SQL to display the first and last name, department, city, and state province for each employee.
+57. Write a query in SQL to display the first name, last name, salary, and job grade for all employees.
+58. Write a query in SQL to display the first name, last name, department number and department name, for all employees for departments 80 or 40.
+59. Write a query in SQL to display those employees who contain a letter z to their first name and also display their last name, department, city, and state province.
+60. Write a query in SQL to display all departments including those where does not have any employee.
+61. Write a query in SQL to display the first and last name and salary for those employees who earn less than the employee earn whose number is 182.
+62. Write a query in SQL to display the first name of all employees including the first name of their manager.
+63. Write a query in SQL to display the department name, city, and state province for each department. 
+64. Write a query in SQL to display the first name, last name, department number and name, for all employees who have or have not any department.
+65. Write a query in SQL to display the first name of all employees and the first name of their manager including those who does not working under any manager. 
+66. Write a query in SQL to display the first name, last name, and department number for those employees who works in the same department as the employee who holds the last name as Taylor.
+
+67. Write a query in SQL to display the job title, department name, full name (first and last name ) of employee, and starting date for all the jobs which started on or after 1st January, 1993 and ending with on or before 31 August, 1997.
+68. Write a query in SQL to display job title, full name (first and last name ) of employee, and the difference between maximum salary for the job and salary of the employee.
+69. Write a query in SQL to display the name of the department, average salary and number of employees working in that department who got commission.
+70. Write a query in SQL to display the full name (first and last name ) of employees, job title and the salary differences to their own job for those employees who is working in the department ID 80.
+71. Write a query in SQL to display the name of the country, city, and the departments which are running there.
+72. Write a query in SQL to display department name and the full name (first and last name) of the manager.
+73. Write a query in SQL to display job title and average salary of employees.
+74. Write a query in SQL to display the details of jobs which was done by any of the employees who is presently earning a salary on and above 12000.
+75. Write a query in SQL to display the country name, city, and number of those departments where at leaste 2 employees are working.
+76. Write a query in SQL to display the department name, full name (first and last name) of manager, and their city.
+77. Write a query in SQL to display the employee ID, job name, number of days worked in for all those jobs in department 80.
+78. Write a query in SQL to display the full name (first and last name), and salary of those employees who working in any department located in London.
+79. Write a query in SQL to display full name(first and last name), job title, starting and ending date of last jobs for those employees with worked without a commission percentage.
+80. Write a query in SQL to display the department name and number of employees in each of the department.
+81. Write a query in SQL to display the full name (firt and last name ) of employee with ID and name of the country presently where (s)he is working.
+
+82. Write a query to display the name ( first name and last name ) for those employees who gets more salary than the employee whose ID is 163.
+83. Write a query to display the name ( first name and last name ), salary, department id, job id for those employees who works in the same designation as the employee works whose id is 169.
+84. Write a query to display the name ( first name and last name ), salary, department id for those employees who earn such amount of salary which is the smallest salary of any of the departments.
+85. Write a query to display the employee id, employee name (first name and last name ) for all employees who earn more than the average salary.
+86. Write a query to display the employee name ( first name and last name ), employee id and salary of all employees who report to Payam.
+87. Write a query to display the department number, name ( first name and last name ), job and department name for all employees in the Finance department.
+88. Write a query to display all the information of an employee whose salary and reporting person id is 3000 and 121 respectively.
+89. Display all the information of an employee whose id is any of the number 134, 159 and 183.
+90. Write a query to display all the information of the employees whose salary is within the range 1000 and 3000.
+91. Write a query to display all the information of the employees whose salary is within the range of smallest salary and 2500. 
+92. Write a query to display all the information of the employees who does not work in those departments where some employees works whose manager id within the range 100 and 200.
+93. Write a query to display all the information for those employees whose id is any id who earn the second highest salary.
+94. Write a query to display the employee name( first name and last name ) and hiredate for all employees in the same department as Clara. Exclude Clara.
+95. Write a query to display the employee number and name( first name and last name ) for all employees who work in a department with any employee whose name contains a T. 
+96. Write a query to display the employee number, name( first name and last name ), and salary for all employees who earn more than the average salary and who work in a department with any employee with a J in their name. 
+97. Display the employee name( first name and last name ), employee id, and job title for all employees whose department location is Toronto.
+98. Write a query to display the employee number, name( first name and last name ) and job title for all employees whose salary is smaller than any salary of those employees whose job title is MK_MAN.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- 1  
+SELECT  *
+FROM   employees 
+-- 2
+FROM employees 
+SELECT last_name , first_name 
+-- Error, invalid SQL Statement
+-- 3
+SELECT department_name , department_id , manager_id AS 'MNG'
+FROM  departments 
+-- 4
+SELECT department_name , department_name 
+FROM   departments 
+-- Valid SQL Statement
+-- 5
+SeleCT        last_NAME , fiRST_NamE , FROM Employees
+-- Error, invalid SQL Statement
+-- 6
+SELECT employee_id , first_name , last_name , phone_number , department_id 
+FROM   employees 
+-- 7
+SELECT first_name , last_name , hire_date , salary , 
+       salary * 12 AS 'ANNUAL_SAL'
+FROM employees 
+-- 8
+SELECT first_name + ' ' + last_name AS 'FULL_NAME' , 
+       phone_number + ' - ' + email AS 'CONTACT_DETAILS'
+FROM employees 
+-- 9
+SELECT DISTINCT manager_id 
+FROM employees 
+-- 10
+SELECT last_name + ' ' + CAST(job_id AS VARCHAR) AS 'EMPLOYEE_AND_TITLE'
+
+FROM employees 
+-- 11
+-- In MSSQL, in order to concatenate string with date / number, everything must be converted into string.
+-- One way to preform this conversion is using the CAST function.
+SELECT first_name AS 'FN' , last_name AS 'LN' , salary AS 'SAL' , 
+       'HD : '+ CAST(hire_date AS VARCHAR) AS 'HD'
+FROM employees 
+-- 12
+SELECT DISTINCT salary 
+FROM employees
+-- 13
+SELECT DISTINCT department_id , job_id  
+FROM employees
+17. 
+SELECT first_name ||' '||last_name AS Full_Name, salary
+  FROM employees
+    WHERE salary < 6000;
+18.
+SELECT first_name,last_name, department_id, salary
+ FROM employees
+  WHERE salary > 8000;
+19.
+SELECT first_name, last_name, department_id
+ FROM employees
+  WHERE last_name = 'McEwen';
+20.
+SELECT *
+ FROM employees
+  WHERE department_id IS NULL;
+21.
+SELECT *
+ FROM  departments
+  WHERE department_name = 'Marketing';
+22.
+SELECT first_name || ' ' || last_name as Full_Name, hire_date,  
+ salary,  department_id
+  FROM employees
+   WHERE first_name NOT LIKE '%M%'
+     ORDER BY department_id;
+23.
+SELECT *
+ FROM employees
+  WHERE salary BETWEEN 8000 AND 12000 
+      AND commission_pct IS NOT NULL
+       OR  department_id NOT IN (40 , 120 , 70)
+          AND   hire_date < '1987-06-05'
+24.
+SELECT first_name ||' '||last_name AS Full_Name, salary
+ FROM  employees
+  WHERE commission_pct IS NULL;
+25.
+SELECT first_name ||' '||last_name AS Full_Name,
+       phone_number ||' - '|| email AS Contact_Details,
+       salary  AS Remuneration
+         FROM employees
+           WHERE salary BETWEEN 9000 AND 17000;
+26.
+SELECT first_name, last_name, salary
+ FROM employees
+  WHERE first_name LIKE '%m';
+27.
+SELECT first_name || ' ' || last_name as Name, salary
+ FROM  employees
+   WHERE salary NOT BETWEEN 7000 AND 15000
+     ORDER BY first_name || ' ' || last_name;
+28.
+SELECT first_name ||' '||last_name AS Full_Name, 
+  job_id, hire_date 
+   FROM employees 
+    WHERE hire_date 
+     BETWEEN '2007-11-05' AND '2009-07-05';
+29.
+SELECT first_name ||' '|| last_name AS Full_Name, department_id
+  FROM employees
+   WHERE department_id = 70 
+     OR department_id = 90;
+30.
+SELECT first_name ||' '||last_name AS Full_Name, salary, manager_id
+   FROM employees
+     WHERE manager_id IS NOT NULL;
+31.
+SELECT *
+ FROM employees
+  WHERE hire_date < '2002-06-21';
+32.
+SELECT first_name, last_name, email, 
+  salary, manager_id
+    FROM employees
+     WHERE manager_id IN (120 , 103 , 145);
+33.
+SELECT *
+ FROM employees
+  WHERE first_name LIKE '%D%'
+   OR first_name LIKE '%S%'
+   OR first_name LIKE '%N%'
+    ORDER BY salary DESC;
+34.
+SELECT first_name ||' '||last_name AS Full_Name, hire_date , 
+  commission_pct, email ||' -  '||phone_number AS Contact_Details, salary 
+     FROM employees 
+       WHERE salary > 11000
+        OR phone_number LIKE '______3%'
+          ORDER BY first_name DESC;
+35.
+SELECT first_name,last_name, department_id
+ FROM employees
+  WHERE first_name LIKE '__s%';
+36.
+SELECT employee_id, first_name, job_id, department_id
+ FROM employees
+  WHERE department_id NOT IN (50, 30, 80);
+37.
+SELECT employee_id, first_name, job_id, department_id
+ FROM employees
+  WHERE department_id IN (30 , 40 , 90);
+38.
+SELECT employee_id 
+	FROM job_history 
+		GROUP BY employee_id 
+			HAVING COUNT(*) >=2;
+39.
+SELECT job_id, COUNT(*), SUM(salary), 
+	MAX(salary)-MIN(salary) AS salary_difference 
+		FROM employees 
+			GROUP BY job_id;
+40.
+SELECT job_id 
+	FROM job_history 
+		WHERE end_date-start_date >300 
+			GROUP BY job_id 
+				HAVING COUNT(*)>=2;
+41.
+SELECT country_id,  COUNT(*)  
+	FROM locations 
+		GROUP BY country_id;
+42.
+SELECT manager_id, COUNT(*) 
+	FROM employees 
+		GROUP BY manager_id;
+43.
+SELECT * 
+	FROM jobs 
+		ORDER BY job_title;
+44.
+SELECT first_name, last_name, hire_date
+	FROM employees 
+		WHERE job_id IN ('SA_REP', 'SA_MAN');
+45.
+SELECT department_id, AVG(salary) 
+	FROM employees 
+		WHERE commission_pct IS NOT NULL 
+			GROUP BY department_id;
+46.
+SELECT DISTINCT department_id
+	FROM employees
+		GROUP BY department_id, manager_id 
+			HAVING COUNT(employee_id) >=4;
+47.
+SELECT department_id 
+	FROM employees 
+		WHERE commission_pct IS NOT NULL
+			GROUP BY department_id 
+				HAVING COUNT(commission_pct)>10;
+48.
+SELECT employee_id, MAX(end_date) 
+	FROM job_history 
+		GROUP BY employee_id;
+49.
+SELECT * 
+	FROM employees 
+		WHERE commission_pct IS NULL 
+			AND salary BETWEEN 7000 AND 12000 
+				AND department_id=50;
+50.
+SELECT job_id, AVG(salary) 
+     FROM employees 
+         GROUP BY job_id 
+               HAVING AVG(salary)>8000;
+51.
+SELECT job_title, max_salary-min_salary AS salary_differences 
+	FROM jobs 
+		WHERE max_salary BETWEEN 12000 AND 18000;
+52.
+SELECT first_name, last_name 
+	FROM employees 
+		WHERE  first_name  LIKE 'D%' 
+			OR last_name LIKE 'D%';
+53.
+SELECT * 
+ FROM jobs 
+  WHERE min_salary > 9000;
+54.
+SELECT * 
+ FROM employees  
+   WHERE hire_date > '1987-09-07';
+
+55.
+SELECT E.first_name , E.last_name , 
+       E.department_id , D.department_name 
+        FROM employees E 
+         JOIN departments D 
+          ON E.department_id = D.department_id;
+56.
+SELECT E.first_name,E.last_name, 
+   D.department_name, L.city, L.state_province
+     FROM employees E 
+      JOIN departments D  
+        ON E.department_id = D.department_id  
+          JOIN locations L
+           ON D.location_id = L.location_id;
+57.
+SELECT E.first_name, E.last_name, E.salary, J.grade_level
+ FROM employees E 
+   JOIN job_grades J
+     ON E.salary BETWEEN J.lowest_sal AND J.highest_sal;
+58.
+SELECT E.first_name , E.last_name , 
+       E.department_id ,  D.department_name 
+         FROM employees E 
+         JOIN departments D 
+          ON E.department_id = D.department_id 
+          AND E.department_id IN (80 , 40)
+           ORDER BY E.last_name;
+59.
+SELECT E.first_name,E.last_name,
+   D.department_name, L.city, L.state_province
+     FROM employees E 
+      JOIN departments D  
+       ON E.department_id = D.department_id 
+        JOIN locations L 
+         ON D.location_id = L.location_id 
+           WHERE E.first_name LIKE  '%z%';
+60.
+SELECT E.first_name, E.last_name, D.department_id, D.department_name 
+ FROM employees E 
+   RIGHT OUTER JOIN departments D
+     ON E.department_id = D.department_id;
+61.
+SELECT E.first_name, E.last_name, E.salary 
+  FROM employees E 
+   JOIN employees S
+     ON E.salary < S.salary 
+      AND S.employee_id = 182;
+62.
+SELECT E.first_name AS "Employee Name", 
+   M.first_name AS "Manager"
+     FROM employees E 
+       JOIN employees M
+         ON E.manager_id = M.employee_id;
+63.
+SELECT D.department_name , L.city , L.state_province
+  FROM  departments D 
+    JOIN locations L 
+      ON  D.location_id = L.location_id;
+64.
+SELECT E.first_name, E.last_name, E.department_id, D.department_name 
+  FROM employees E 
+   LEFT OUTER JOIN departments D 
+     ON E.department_id = D.department_id;
+65.
+SELECT E.first_name AS "Employee Name",
+   M.first_name AS "Manager"
+    FROM employees E 
+      LEFT OUTER JOIN employees M
+       ON E.manager_id = M.employee_id;
+66.
+SELECT E.first_name, E.last_name, E.department_id 
+ FROM employees E 
+   JOIN employees S
+     ON E.department_id = S.department_id
+       AND S.last_name = 'Taylor';
+67.
+SELECT job_title, department_name, first_name || ' ' || last_name AS Employee_name, start_date 
+	FROM job_history 
+		JOIN jobs USING (job_id) 
+			JOIN departments USING (department_id) 
+				JOIN  employees USING (employee_id) 
+					WHERE start_date>='1993-01-01' AND start_date<='1997-08-31';
+68.
+SELECT job_title, first_name || ' ' || last_name AS Employee_name, 
+	max_salary-salary AS salary_difference 
+	FROM employees 
+		NATURAL JOIN jobs;
+69.
+SELECT department_name, AVG(salary), COUNT(commission_pct) 
+	FROM departments 
+		JOIN employees USING (department_id) 
+GROUP BY department_name;
+
+70.
+SELECT job_title, first_name || ' ' || last_name AS Employee_name, 
+	max_salary-salary AS salary_difference
+	FROM employees 
+		NATURAL JOIN jobs 
+			WHERE department_id  = 80;
+71.
+SELECT country_name,city, department_name 
+	FROM countries 
+		JOIN locations USING (country_id) 
+			JOIN departments USING (location_id);
+72.
+SELECT department_name, first_name || ' ' || last_name AS name_of_manager
+	FROM departments D 
+		JOIN employees E 
+			ON (D.manager_id=E.employee_id);
+73.
+SELECT job_title, AVG(salary) 
+	FROM employees 
+		NATURAL JOIN jobs 
+			GROUP BY job_title;
+74.
+SELECT a.*
+	FROM  job_history a 
+		JOIN employees m 
+			ON (a.employee_id = m.employee_id)
+WHERE salary >= 12000;
+75.
+SELECT country_name,city, COUNT(department_id)
+	FROM countries 
+		JOIN locations USING (country_id) 
+		JOIN departments USING (location_id) 
+WHERE department_id IN 
+    (SELECT department_id 
+		FROM employees 
+	 GROUP BY department_id 
+	 HAVING COUNT(department_id)>=2)
+GROUP BY country_name,city;
+
+76.
+SELECT department_name, first_name || ' ' || last_name AS name_of_manager, city 
+	FROM departments D 
+		JOIN employees E 
+			ON (D.manager_id=E.employee_id) 
+				JOIN locations L USING (location_id);
+77.
+SELECT employee_id, job_title, end_date-start_date DAYS 
+	FROM job_history 
+		NATURAL JOIN jobs 
+			WHERE department_id=80;
+78.
+SELECT first_name || ' ' || last_name AS Employee_name, salary
+	FROM employees 
+		JOIN departments USING (department_id) 
+		JOIN  locations USING (location_id) 
+	WHERE  city = 'London';
+79.
+SELECT CONCAT(e.first_name, ' ', e.last_name) AS Employee_name,
+       j.job_title,
+       h.*
+FROM employees e
+JOIN
+  (SELECT MAX(start_date),
+          MAX(end_date),
+          employee_id
+   FROM job_history
+   GROUP BY employee_id) h ON e.employee_id=h.employee_id
+JOIN jobs j ON j.job_id=e.job_id
+WHERE e.commission_pct = 0;
+
+80.
+SELECT d.department_name,
+       e.*
+FROM departments d
+JOIN
+  (SELECT count(employee_id),
+          department_id
+   FROM employees
+   GROUP BY department_id) e USING (department_id);
+81.
+SELECT first_name || ' ' || last_name AS Employee_name, 
+	employee_id, country_name 
+		FROM employees 
+			JOIN departments USING(department_id) 
+JOIN locations USING( location_id) 
+JOIN countries USING ( country_id);
+
+82.
+SELECT first_name, last_name 
+FROM employees 
+WHERE salary > 
+( SELECT salary  
+FROM employees 
+WHERE employee_id=163
+);
+83.
+SELECT first_name, last_name, salary, department_id, job_id 
+FROM employees 
+WHERE job_id =  
+( SELECT job_id  
+FROM employees  
+WHERE employee_id=169
+);
+84.
+SELECT first_name, last_name, salary, department_id  
+FROM employees  
+WHERE salary IN  
+( SELECT MIN(salary)  
+FROM employees  
+GROUP BY department_id 
+);
+
+85.
+SELECT employee_id, first_name,last_name  
+FROM employees  
+WHERE salary >  
+( SELECT AVG(salary)  
+FROM employees 
+);
+
+86.
+SELECT first_name, last_name, employee_id, salary  
+FROM employees  
+WHERE manager_id = 
+(SELECT employee_id  
+FROM employees  
+WHERE first_name = 'Payam' 
+);
+
+87.
+SELECT e.department_id, e.first_name, e.job_id , d.department_name  
+FROM employees e , departments d  
+WHERE e.department_id = d.department_id  
+AND  d.department_name = 'Finance';
+
+88.
+SELECT * 
+FROM employees 
+WHERE (salary,manager_id)=
+(SELECT 3000,121);
+
+89.
+SELECT * 
+FROM employees 
+WHERE employee_id IN (134,159,183);
+
+90.
+SELECT * FROM employees 
+WHERE salary BETWEEN 1000 and 3000;
+
+91.
+SELECT * 
+FROM employees 
+WHERE salary BETWEEN  
+(SELECT MIN(salary) 
+FROM employees) AND 2500;
+
+92.
+SELECT * 
+FROM employees 
+WHERE department_id NOT IN 
+(SELECT department_id 
+FROM departments 
+WHERE manager_id BETWEEN 100 AND 200);
+
+93.
+SELECT * 
+FROM employees 
+WHERE employee_id IN 
+(SELECT employee_id 
+FROM employees  
+WHERE salary = 
+(SELECT MAX(salary) 
+FROM employees 
+WHERE salary < 
+(SELECT MAX(salary) 
+FROM employees)));
+
+94.
+SELECT first_name, last_name, hire_date  
+FROM employees  
+WHERE department_id =  
+( SELECT department_id  
+FROM employees  
+WHERE first_name = 'Clara')  
+AND first_name <> 'Clara';
+
+95.
+SELECT employee_id, first_name, last_name  
+FROM employees  
+WHERE department_id IN  
+( SELECT department_id  
+FROM employees  
+WHERE first_name LIKE '%T%' );
+
+96.
+SELECT employee_id, first_name , salary  
+FROM employees  
+WHERE salary > 
+(SELECT AVG (salary)  
+FROM employees ) 
+AND  department_id IN 
+( SELECT department_id  
+FROM employees  
+WHERE first_name LIKE '%J%');
+
+97.
+SELECT  first_name, last_name, employee_id, job_id  
+FROM employees  
+WHERE department_id = 
+(SELECT department_id  
+FROM departments 
+WHERE location_id = 
+(SELECT location_id 
+FROM locations  
+WHERE city ='Toronto'));
+
+98.
+SELECT employee_id,first_name,last_name,job_id  
+FROM employees 
+ WHERE salary < ANY 
+ ( SELECT salary  
+ FROM employees  
+ WHERE job_id = 'MK_MAN' );

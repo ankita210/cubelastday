@@ -1,0 +1,1086 @@
+-----PL/SQL
+
+SET SERVEROUTPUT ON SIZE 1000000
+
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('Hello PL/SQL');
+END;
+
+
+
+
+
+
+declare
+var1 varchar2(20);
+begin
+var1:='Hello World';
+dbms_output.put_line(var1);
+exception
+when others then
+dbms_output.put_line('Its an exception');
+end;
+
+------------------ declaring variables
+declare
+var1 varchar2(100);
+hire_date date;
+var2 number default 5;
+var3 number not null:=2;
+var4 varchar2(20):=null;
+var5 varchar2(20) default null;
+var_const constant number:=100;
+begin
+  DBMS_OUTPUT.PUT_LINE(var_const);
+  --var_const:=200;
+  --DBMS_OUTPUT.PUT_LINE(var_const);
+  exception
+  when others then
+  dbms_output.put_line('Exception ocurred');
+end;
+
+--------------%type and %rowtype
+select ename from emp where empno=7839;
+select * from emp
+
+declare 
+name varchar2(30);
+
+begin
+  select ename into name from emp where empno=7839;
+  dbms_output.put_line(name);
+end;
+
+---- select into
+
+
+------------- %TYPE
+declare
+eno emp.empno%type:=10;
+begin
+select empno into eno from emp where ename='KING';
+dbms_output.put_line(eno);
+end;
+
+--------%rowtype
+select * from EMP
+declare 
+empRec emp%rowtype;
+begin
+  select * into empRec from emp where empno=7839;
+  dbms_output.put_line(empRec.empno||' '||empRec.ename);
+end;
+
+clear screen
+
+-- IF
+declare
+nAge number:=18;
+begin
+
+if nAge>=18 then
+  dbms_output.put_line('Eliglible for employment');
+
+else
+  dbms_output.put_line('Eliglible for employment');
+end if;
+end;
+
+------ IF ELSIF
+declare
+  nSalary number:=4000;
+  nProfTax number;
+begin
+if nSalary < 2000 then 
+  nProfTax := 0; 
+elsif nSalary < 3500 then 
+  nProfTax := 15; 
+elsif nSalary < 5000 then 
+  nProfTax := 30; 
+else 
+  nProfTax := 50; 
+end if;
+dbms_output.put_line(nProfTax);
+end;
+
+select * from emp;
+
+
+
+declare 
+esal number;
+begin
+  select sal into esal from emp where empno=7839;
+  if esal=5000 then
+    update emp set comm=1000 where empno=7839;
+    dbms_output.put_line('Row updated.');
+    
+  end if;
+end;
+select * from emp
+
+
+select table_name,
+case owner
+when 'SYS' then 'The owner is SYS'
+when 'SYSTEM' then 'The owner is SYSTEM'
+ELSE 'The owner is another value'
+end 
+from all_tables
+
+select * from product
+select * from user_tables where table_name='EMP'
+
+select ename,empno,deptno,
+(case deptno 
+ when 10 then 'Accounting'
+ when 20 then 'Research'
+ when 30 then 'Sales'
+ when 40 then 'Operations'
+ else 'Unkown'
+end) Department_Name
+from emp
+order by empno
+
+set serveroutput on
+declare 
+  deptno number:=20;
+  dept_desc varchar2(20);
+begin
+  dept_desc:=case deptno
+                when 10 then 'Accounting'
+                when 20 then 'Research'
+                when 30 then 'Sales'
+                when 40 then 'Operations'
+                else 'Unkown'
+              end;
+    dbms_output.put_line(dept_desc);
+end;
+
+-----Searched Case
+select empno,ename,sal,
+(
+  case when sal<1000 then 'LOW'
+       when sal between 1000 and 3000 then 'Medium'
+       when sal>3000 then 'High'
+       else 'N/A'
+   END
+) Salary
+from emp
+order by ename;
+
+----------- 
+SET SERVEROUTPUT ON
+DECLARE
+  sal       NUMBER := 2000;
+  sal_desc  VARCHAR2(20);
+BEGIN 
+  sal_desc := CASE
+                 WHEN sal < 1000 THEN 'Low'
+                 WHEN sal BETWEEN 1000 AND 3000 THEN 'Medium'
+                 WHEN sal > 3000 THEN 'High'
+                 ELSE 'N/A'
+              END;
+  DBMS_OUTPUT.PUT_LINE(sal_desc);
+END;
+
+------Value Match (Simple) CASE statement
+SET SERVEROUTPUT ON
+BEGIN
+  FOR CUR_REC IN (SELECT ENAME,EMPNO,DEPTNO FROM EMP ORDER BY ENAME) LOOP
+    --DBMS_OUTPUT.PUT_LINE(CUR_REC.ENAME||' : '||CUR_REC.EMPNO||' : '||CUR_REC.DEPTNO||' : ');
+    DBMS_OUTPUT.PUT(CUR_REC.ENAME||' : '||CUR_REC.EMPNO||' : '||CUR_REC.DEPTNO||' : ');
+    CASE CUR_REC.DEPTNO
+      WHEN 10 THEN DBMS_OUTPUT.PUT_LINE('ACCOUNTING');
+      WHEN 20 THEN DBMS_OUTPUT.PUT_LINE('RESEARCH');
+      WHEN 30 THEN DBMS_OUTPUT.PUT_LINE('SALES');
+      WHEN 40 THEN DBMS_OUTPUT.PUT_LINE('OPERATIONS');
+      ELSE DBMS_OUTPUT.PUT_LINE('UNKOWN');
+    END CASE;
+  END LOOP;
+END;
+------------------------
+
+SET SERVEROUTPUT ON
+BEGIN
+  FOR cur_rec IN (SELECT ename, empno, sal FROM emp ORDER BY ename) LOOP
+    DBMS_OUTPUT.PUT(cur_rec.ename || ' : ' || cur_rec.empno || ' : ' || cur_rec.sal || ' : ');
+    CASE
+      WHEN cur_rec.sal < 1000 THEN 
+        DBMS_OUTPUT.PUT_LINE('Low');
+      WHEN cur_rec.sal BETWEEN 1000 AND 3000 THEN 
+        DBMS_OUTPUT.PUT_LINE('Medium');
+      WHEN cur_rec.sal > 3000 THEN 
+        DBMS_OUTPUT.PUT_LINE('High');
+      ELSE 
+        DBMS_OUTPUT.PUT_LINE('Unknown');
+    END CASE;
+  END LOOP;
+END;
+
+--------LOOP statement , EXIT at the begining
+
+SET SERVEROUTPUT ON
+DECLARE
+  i  NUMBER := 1;
+BEGIN
+  LOOP
+    EXIT WHEN i > 5;
+    DBMS_OUTPUT.put_line(i);
+    i := i + 1;
+  END LOOP;
+END;
+
+------- EXIT at end
+SET SERVEROUTPUT ON
+DECLARE
+  i  NUMBER := 1;
+BEGIN
+  LOOP
+    
+    DBMS_OUTPUT.put_line(i);
+    i := i + 1;
+    EXIT WHEN i > 5;
+  END LOOP;
+END;
+
+clear screen
+------ FOR LOOP
+SET SERVEROUTPUT ON
+BEGIN
+  FOR i IN 1 .. 5 LOOP
+    DBMS_OUTPUT.put_line(i);
+  END LOOP;
+END;
+--------------
+SET SERVEROUTPUT ON
+DECLARE
+  i  NUMBER := 1;
+BEGIN
+  WHILE i <= 5 LOOP
+    DBMS_OUTPUT.put_line(i);
+    i := i + 1;
+  END LOOP;
+END;
+
+------------------
+SET SERVEROUTPUT ON
+DECLARE
+  i  NUMBER := 1;
+BEGIN
+  LOOP
+    IF i > 5 THEN
+      GOTO exit_from_loop;
+    END IF;
+    DBMS_OUTPUT.put_line(i);
+    i := i + 1;
+  END LOOP;
+  
+  << exit_from_loop >>
+  NULL;
+END;
+
+-----Cursors 1
+--1) Retrieving the records from the emp table and displaying them one by one using cursors:
+SET SERVEROUTPUT ON;
+declare
+var_empno emp.empno%type;
+var_ename emp.ename%type;
+var_sal emp.sal%type;
+CURSOR EMP_CUR IS SELECT empno, ename, sal FROM EMP;
+BEGIN
+  OPEN EMP_CUR;
+  LOOP
+    FETCH EMP_CUR INTO var_empno,var_ename,var_sal;
+    EXIT WHEN EMP_CUR%NOTFOUND;
+    IF var_sal>100 THEN 
+      DBMS_OUTPUT.PUT_LINE(var_empno||' '||var_ename||' '||var_sal);
+    ELSE
+      DBMS_OUTPUT.PUT_LINE(var_ename|| 'salary is less than 1000');
+    END IF;
+  END LOOP;
+    
+    CLOSE EMP_CUR;
+    DBMS_OUTPUT.PUT_LINE('DONE');
+END;
+
+-----------Cursor 2
+--2) Create a PL/SQL block to increase salary of employees in department 20. // Updatable Cursor
+SET SERVEROUTPUT ON
+DECLARE
+  CURSOR EMP_CUR IS SELECT EMPNO,SAL FROM EMP WHERE DEPTNO=20
+  FOR UPDATE;
+  INCR NUMBER(2,2);
+BEGIN
+  FOR EMP_REC IN EMP_CUR 
+  LOOP
+    IF EMP_REC.SAL<1000 THEN
+      INCR:=0.20;
+    ELSE
+      INCR:=0.12;
+    END IF;
+    UPDATE EMP SET SAL=SAL+SAL*INCR WHERE CURRENT OF EMP_CUR;
+  END LOOP;
+END;
+SELECT * FROM EMP WHERE DEPTNO=20
+
+-- implicit cursor1
+
+SET SERVEROUTPUT ON
+DECLARE 
+  VAR_ENAME VARCHAR2(20);
+BEGIN
+  SELECT ENAME INTO VAR_ENAME FROM EMP WHERE EMPNO=7560;
+  DBMS_OUTPUT.PUT_LINE('EMPLOYEE NAME: '||VAR_ENAME);
+  EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('There is no Employee with this ID.');
+END;
+
+-- implicit cursor2
+begin
+update emp set sal=sal+sal*0.1 where deptno=10;
+dbms_output.put_line(sql%rowcount||' records affected.');
+end;
+select * from emp where deptno=10;
+
+declare 
+sal_sum number;
+begin
+--select sal into sal_sum from emp where empno=7566;
+update emp set sal=sal+sal*0.1 where deptno=90;
+dbms_output.put_line(sql%rowcount);
+end;
+
+DECLARE
+rows_deleted NUMBER;
+BEGIN
+DELETE * FROM emp;
+rows_deleted := SQL%ROWCOUNT;
+END;
+
+-- cursor with parameter
+set serveroutput on
+declare
+cursor emp_cur(eno in number)
+  is select * from emp where empno=eno;
+  var_emp emp%rowtype;
+begin
+   open emp_cur(1200);
+  loop
+    fetch emp_cur into var_emp;
+    exit when emp_cur%notfound;
+    dbms_output.put_line(var_emp.empno||' '||var_emp.ename||' '||var_emp.sal);
+  end loop;
+  close emp_cur;
+end;
+
+--An example to retrieve the first 10 employees one by one.
+
+set serveroutput on
+declare
+  v_empno emp.empno%type;
+  v_ename emp.ename%type;
+  cursor emp_cur is
+  select empno,ename from emp;
+begin
+  open emp_cur;
+  --for i in 1..20 
+  for i in 1..14 
+  loop
+    fetch emp_cur into v_empno,v_ename;
+    dbms_output.put_line(v_empno||' '||v_ename);
+  end loop;
+  close emp_cur;
+end;
+
+select count(*) from emp;
+
+----------- not working
+set serveroutput on
+declare 
+cursor emp_cur(v_ename varchar2) is
+  select empno,ename,sal from emp where ename like'%v_ename%';
+  begin
+    for emp_rec in emp_cur('R')
+    loop
+      dbms_output.put_line(emp_rec.empno||' '||emp_rec.ename||' '||emp_rec.sal);
+    end loop;
+--close emp_rec;
+  end;
+
+---------
+declare
+cursor emp_rec(v_ename varchar2) is 
+select empno,ename,sal from emp where ename like '%SMITH%';
+v_eno emp.empno%type;
+v_enm emp.ename%type;
+v_sal emp.sal%type;
+begin
+  open emp_rec('');
+  loop
+    fetch emp_rec into v_eno,v_enm,v_sal;
+    exit when emp_rec%notfound;
+    dbms_output.put_line(v_eno||' '||v_enm||' '||v_sal);
+  end loop;
+  close emp_rec;
+end;
+
+-----
+/*
+REF Cursors
+
+
+A REF CURSOR or cursor variable is just a reference or a handle to a static cursor. It allows a user to pass this "reference to the same cursor" among all the programs that need access to the cursor. Cursor variables give you easy access to centralized data retrieval.
+
+There are two types of cursor variables:
+
+Strong REF Cursor and 
+Weak REF Cursor
+
+
+What is the difference between Cursor and REF Cursor, and when would you appropriately use each of these?
+
+Technically, under the covers, at the most "basic level", they are the same.
+
+A "normal" PL/SQL cursor is static in definition.
+
+Ref cursors may be dynamically opened or opened based on logic.*/
+
+--------------
+set serveroutput on
+declare
+p_deptno emp.deptno%TYPE:=10;
+p_recordset SYS_REFCURSOR;
+l_ename emp.ename%type;
+l_empno emp.empno%type;
+l_deptno emp.deptno%type;
+begin
+  open p_recordset for 
+    select ename,empno,deptno from emp where deptno=p_deptno order by ename;
+    loop
+     fetch p_recordset into l_ename,l_empno,l_deptno;
+     exit when p_recordset%notfound;
+     DBMS_OUTPUT.PUT_LINE(l_ename || ' | ' || l_empno || ' | ' || l_deptno);
+    end loop;
+end;
+
+-------
+declare
+type emp_cur is ref cursor;
+c1 emp_cur;
+r_c1 emp%rowtype;
+begin
+  open c1 for select * from emp;
+  fetch c1 into r_c1;
+  if c1%isopen then
+    dbms_output.put_line('The cursor is open');
+  end if;
+    dbms_output.put_line('Row Count is '||c1%rowcount);
+    close c1;
+    if not c1%isopen then
+      dbms_output.put_line('The Cursor is closed.');
+    end if;
+end;
+
+
+--- Oracle PL/SQL Cursor For Loops
+declare
+  cursor cur1_dept is select deptno,dname from dept order by deptno;
+  cursor cur1_emp(par1_deptno varchar2) is select ename,sal from emp where deptno=par1_deptno order by ename;
+  var_total_salary number(10,2);
+begin
+  for r1_dept in cur1_dept loop
+    dbms_output.put_line('Department: '||r1_dept.deptno||' - '||r1_dept.dname);
+    var_total_salary:=0;
+    for r1_emp in cur1_emp(r1_dept.deptno) loop
+      dbms_output.put_line('Name: '||r1_emp.ename||' Salary: '||r1_emp.sal);
+      var_total_salary:=var_total_salary+r1_emp.sal;
+    end loop;
+    dbms_output.put_line('Total Salary for Dept: '||r1_dept.deptno||' is: '||var_total_salary);
+  end loop;
+end;
+
+
+-- PL/SQL Procedures
+/*
+There are two types of named blocks: Functions and Procedures
+
+A stored procedure is a PL/SQL block that accepts zero or more parameters as input (IN), output (OUT), or both (INOUT). PL/SQL Procedures do not return a value; instead the INOUT parameter or OUT parameter may be used to pass a value from the procedure. Procedures cannot be used in SQL statements; they are invoked using the EXECUTE command or called inside a PL/SQL block.
+*/
+
+create or replace procedure test_proc
+as
+begin
+  dbms_output.put_line('Hello Procedure');
+end;
+exec test_proc
+
+begin
+  test_proc;
+end;
+
+----------
+create or replace procedure imp_cur_proc(emp_cur out sys_refcursor)
+as
+begin
+  open emp_cur for select * from emp;
+end imp_cur_proc;
+
+set serveroutput on
+declare 
+cur1 sys_refcursor;
+emp_rec emp%rowtype;
+begin
+  imp_cur_proc(emp_cur=>cur1);
+  loop
+    fetch cur1 into emp_rec;
+    exit when cur1%notfound;
+    dbms_output.put_line('Name: '||emp_rec.ename||' '||emp_rec.job);
+  end loop;
+end;
+
+------------------------- output parameter
+create or replace procedure proc1(eno in number,emprec out emp%rowtype)
+is
+begin
+  select * into emprec from emp where empno=eno;  
+end;
+select * from EMP
+
+set serveroutput on
+declare e_rec emp%rowtype;
+eno number:=&no;
+begin
+  proc1(eno,e_rec);
+  dbms_output.put_line(e_rec.empno||' '||' '||e_rec.ename||' '||e_rec.sal||' '||e_rec.deptno);
+end;
+
+--------------------------
+create or replace procedure raise_salary(dno number,percentage number default 0.5)
+is
+  cursor emp_cur(dept_no number)
+  is
+    select sal from emp where deptno=dept_no for update of sal;
+  empsal number(8);
+begin
+  open emp_cur(dno);
+  loop
+    fetch emp_cur into empsal;
+    exit when emp_cur%notfound;
+    update emp set sal=sal+empsal*percentage
+    where current of emp_cur;
+  end loop;
+  close emp_cur;
+  commit;
+end raise_salary;
+
+execute RAISE_SALARY(10,0.3)
+execute RAISE_SALARY(20)
+select * from emp
+
+-----------------Functions
+
+create or replace function test_fun(nm varchar2)
+return varchar2
+is
+begin
+  return ('Welcome, '||nm);
+end;
+
+begin
+  dbms_output.put_line(test_fun('Simant'));
+end;
+
+select empno from emp
+
+------------------------------
+create or replace function getName(eno in number)
+return varchar2
+is
+  enm varchar2(20);
+begin
+  select ename into enm from  emp where empno=eno;
+  return enm;
+end;
+
+begin
+dbms_output.put_line(getName(7698));
+end;
+
+DECLARE
+    no number :=&no;
+    name varchar2(20);
+BEGIN
+    name := getName(no);
+    dbms_output.put_line('Name:'||'   '||name);
+    end;
+-------------------------------
+SELECT
+  EXTRACT( YEAR FROM TO_DATE( '31-Dec-1999 15:30:20 ',  'DD-Mon-YYYY HH24:MI:SS' ) ) YEAR
+FROM
+  DUAL;
+
+desc emp
+select sum(sal) from emp where deptno=10 group by deptno order by deptno;
+------------------------ find max salary in a department
+create or replace function getMaxSal(d_no number)
+return number
+is
+tot_sal number(7,2);
+begin
+  select sum(sal) into tot_sal from emp where deptno=d_no group by deptno;
+  return tot_sal;
+end;
+
+set serveroutput on
+begin
+  DBMS_OUTPUT.PUT_LINE(getMaxSal(10));
+end;
+
+
+-----------Packages
+
+--- Package specification:
+
+create or replace package personnel 
+as
+  function get_fullname(n_emp_id number)
+  return varchar2;
+  function get_salary(n_emp_id number)
+  return number;
+end personnel;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---package body
+create or replace package body personnel 
+as
+  --get name
+  function get_fullname(n_emp_id number)
+  return varchar2
+  is
+  v_fullname varchar2(46);
+  begin
+    select ename into v_fullname from emp where empno=n_emp_id;
+    return v_fullname;
+  exception 
+  when no_data_found then
+    return null;
+  when too_many_rows then
+    return null;
+  end;
+  -- get salary
+  function get_salary(n_emp_id number) return number is
+  n_salary number(8,2);
+  begin
+    select sal into n_salary from emp where empno=n_emp_id;
+    return n_salary;
+    exception 
+  when no_data_found then
+    return null;
+  when too_many_rows then
+    return null;
+  end;
+end personnel;
+  
+clear screen
+
+
+set serveroutput on size 1000000;
+declare
+ n_salary number(8,2);
+ v_name varchar2(46);
+ n_emp_id number:=&emp_id;
+begin
+  v_name:=personnel.get_fullname(n_emp_id);
+  n_salary:=personnel.get_salary(n_emp_id);
+  
+  if v_name is not null and n_salary is not null
+  then
+    dbms_output.put_line('Employee: '||v_name);
+    dbms_output.put_line('Salary: '||n_salary);
+  end if;
+end;
+select * from emp;
+ 
+ --------------------
+ drop package emp_actions
+ create or replace package emp_actions
+ as
+  procedure hire_employee(empid number,ename varchar2,job varchar2,sal number,deptno number);
+  procedure fire_employee(empid number);
+end emp_actions;
+
+create or replace package body emp_actions
+as
+  procedure hire_employee(empid number,ename varchar2,job varchar2,sal number,deptno number)
+  is
+  begin
+    insert into emp(empno,ename,job,sal,deptno) values(empid,ename,job,sal,deptno);
+  end hire_employee;
+  PROCEDURE fire_employee(empid number)
+  is
+  begin
+    delete from emp where empno=empid;
+  end fire_employee;
+end emp_actions;
+
+
+begin
+  EMP_ACTIONS.HIRE_EMPLOYEE(1234,'Sam','Manager',4000,10);
+  EMP_ACTIONS.HIRE_EMPLOYEE(5678,'Jude','Developer',3000,20);
+  EMP_ACTIONS.FIRE_EMPLOYEE(1234);
+end;
+select * from emp;
+
+--------------------
+create or replace package emp_data as
+  procedure open_cv(generic_cv in out sys_refcursor,choice in number);
+end emp_data;
+
+create or replace package body emp_data as
+  procedure open_cv(generic_cv in out sys_refcursor,choice in number)
+  is
+  begin
+    if choice=1 then
+      open generic_cv for select * from emp;
+    elsif choice=2 then
+      open generic_cv for select * from dept;
+    elsif choice=3 then
+      open generic_cv for select * from salgrade;
+    end if;
+  end open_cv;
+end emp_data;
+clear screen
+variable x refcursor;
+exec emp_data.open_cv(x,1);
+print x;
+
+
+--------------------Triggers
+create table sal_raise
+(
+  empno number(5),
+  old_sal number(6),
+  new_sal number(6),
+  change_time date
+)
+create or replace trigger trig_sal
+after update on emp
+for each row
+begin
+  dbms_output.put_line('Trigger fired');
+  insert into sal_raise values(:old.empno,:old.salary,:new.salary,sysdate);
+  
+end;
+
+create user simant identified by ss123;
+grant connect to simant;
+
+grant connect,resource,DBA to simant
+grant create session to simant
+grant unlimited tablespace to simant;
+
+select username as schema_name
+from sys.all_users
+order by username;
+
+
+
+select * from SYS.EMP
+
+create table sal_raise
+(
+  empno number(5),
+  old_sal number(6),
+  new_sal number(6),
+  change_time date
+)
+
+@"d:\Oracle\emp.sql"
+
+/*
+Type of Triggers
+BEFORE Trigger: BEFORE trigger execute before the triggering DML statement (INSERT, UPDATE, DELETE) execute. Triggering SQL statement is may or may not execute, depending on the BEFORE trigger conditions block.
+
+AFTER Trigger: AFTER trigger execute after the triggering DML statement (INSERT, UPDATE, DELETE) executed. Triggering SQL statement is execute as soon as followed by the code of trigger before performing Database operation.
+
+ROW Trigger: ROW trigger fire for each and every record which are performing INSERT, UPDATE, DELETE from the database table. If row deleting is define as trigger event, when trigger file, deletes the five rows each times from the table.
+
+Statement Trigger: Statement trigger fire only once for each statement. If row deleting is define as trigger event, when trigger file, deletes the five rows at once from the table.
+
+Combination Trigger: Combination trigger are combination of two trigger type:
+
+Before Statement Trigger: Trigger fire only once for each statement before the triggering DML statement.
+
+Before Row Trigger : Trigger fire for each and every record before the triggering DML statement.
+
+After Statement Trigger: Trigger fire only once for each statement after the triggering DML statement executing.
+
+After Row Trigger: Trigger fire for each and every record after the triggering DML statement executing.
+*/
+/*
+CREATE [OR REPLACE] TRIGGER trigger_name      
+    BEFORE | AFTER
+    [INSERT, UPDATE, DELETE [COLUMN NAME..]
+    ON table_name
+
+    Referencing [ OLD AS OLD | NEW AS NEW ]
+    FOR EACH ROW | FOR EACH STATEMENT [ WHEN Condition ]
+
+DECLARE
+    [declaration_section
+        variable declarations;
+        constant declarations;
+    ]
+
+BEGIN
+    [executable_section
+        PL/SQL execute/subprogram body
+    ]
+
+EXCEPTION
+    [exception_section
+        PL/SQL Exception block
+    ]
+
+END;
+*/
+/*
+Syntax Description
+
+CREATE [OR REPLACE] TRIGGER trigger_name: Create a trigger with the given name. If already have overwrite the existing trigger with defined same name.
+
+BEFORE | AFTER : Indicates when the trigger get fire. BEFORE trigger execute before when statement execute before. AFTER trigger execute after the statement execute.
+
+[INSERT, UPDATE, DELETE [COLUMN NAME..]: Determines the performing trigger event. You can define more then one triggering event separated by OR keyword.
+
+ON table_name: Define the table name to performing trigger event.
+
+Referencing [ OLD AS OLD | NEW AS NEW ]: Give referencing to a old and new values of the data. :old means use existing row to perform event and :new means use executing new row to perform event. You can set referencing names user define name from old (or new).
+You can't referencing old values when inserting a record, or new values when deleting a record, because It's does not exist.
+
+FOR EACH ROW | FOR EACH STATEMENT: Trigger must fire when each row gets Affected (ROW Trigger). and fire only once when the entire sql statement is execute (STATEMENT Trigger).
+
+WHEN Condition: Optional. Use only for row level trigger. Trigger fire when specified condition is satisfy.
+*/
+-- Inserting Trigger
+--This trigger execute BEFORE to convert ename field lowercase to uppercase.
+
+create or replace trigger trg1
+before insert on emp
+  for each row 
+  begin
+    :new.job:=upper(:new.job);
+  end;
+  insert into emp values('5678','Ria','Salesman','7654','05-Aug-2019',5000,0,20)
+  
+  select * from emp;
+
+----------------------Deleting Trigger
+--This trigger is preventing to deleting row.
+CREATE or REPLACE TRIGGER trg2
+    AFTER
+    DELETE ON emp
+    FOR EACH ROW
+BEGIN
+    IF :old.empno = 5678 THEN
+        raise_application_error(-20015, 'You can''t delete this row');
+    END IF;
+END;
+delete from emp where empno=5678
+select * from emp
+
+------------------------------
+CREATE TABLE audits (
+      --audit_id         NUMBER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+      audit_id         NUMBER primary key not null,
+      table_name       VARCHAR2(255),
+      transaction_name VARCHAR2(10),
+      by_user          VARCHAR2(30),
+      transaction_date DATE
+);
+
+CREATE SEQUENCE SEQ
+
+CREATE OR REPLACE TRIGGER AUTONUMBER
+    BEFORE INSERT ON audits
+    FOR EACH ROW
+    BEGIN
+       SELECT SEQ.NEXTVAL
+       INTO :NEW.audit_id FROM DUAL;
+    END;
+
+insert into audits values(t)
+  
+CREATE OR REPLACE TRIGGER customers_audit_trg
+    AFTER 
+    UPDATE OR DELETE 
+    ON emp
+    FOR EACH ROW    
+DECLARE
+   l_transaction VARCHAR2(10);
+BEGIN
+   -- determine the transaction type
+   l_transaction := CASE  
+         WHEN UPDATING THEN 'UPDATE'
+         WHEN DELETING THEN 'DELETE'
+   END;
+ 
+   -- insert a row into the audit table   
+   INSERT INTO audits (table_name, transaction_name, by_user, transaction_date)
+   VALUES('EMP', l_transaction, USER, SYSDATE);
+END;
+
+update emp set sal=sal+1000 where empno='1234'
+select * from audits;
+--------------------- row level trigger
+clear screen
+create or replace trigger trig_sal
+after update on emp
+for each row
+begin
+  dbms_output.put_line('Trigger fired');
+  insert into sal_raise values(:old.empno,:old.sal,:new.sal,sysdate);
+  
+end;
+
+select * from simant.emp
+update emp set sal=sal+1000 where deptno=10;
+select * from EMP
+select * from sal_raise
+
+------------------ Statement level trigger
+select * from salgrade
+create or replace trigger trg_salgrade_raise
+  before update of losal,hisal
+  on salgrade
+declare
+  last_day number;
+begin
+  last_day:=extract(day from sysdate);
+  if last_day between 28 and 31 then
+    raise_application_error(-20100,'Cannot update customer credit from 28th to 31st');
+  end if;
+end;
+update salgrade set hisal=5000 where grade=4
+
+----- instead of trigger
+/*
+  An INSTEAD OF trigger is a trigger that allows you to update data in tables via their view which cannot be modified directly through DML statements.
+  When you issue a DML statement such as INSERT, UPDATE, or DELETE to a non-updatable view, Oracle will issue an error.
+  If the view has an INSTEAD OF trigger, it will automatically skip the DML statement and execute other DML statements instead.
+  Note that an INSTEAD OF trigger is fired for each row of the view that gets modified.
+  In Oracle, you can create an INSTEAD OF trigger for a view only. You cannot create an INSTEAD OF trigger for a table.
+  
+*/
+select * from emp
+select * from product;
+select * from price;
+
+desc product
+desc price
+create or replace view vw_product_price 
+as
+  select prodid,descrip,stdprice,minprice,startdate,enddate from product
+  inner join
+  price using(prodid);
+  
+insert into vw_product_price values(1111,'Toy',4000,2000,sysdate,sysdate+1)
+
+clear screen
+create or replace trigger trg_product_price
+instead of insert on vw_product_price
+for each row
+declare
+  prod_id number;
+begin
+  insert into product(prodid,descrip)values(:new.prodid,:new.descrip);
+  insert into price(prodid,stdprice,minprice,startdate,enddate)values(:new.prodid,:new.stdprice,:new.minprice,:new.startdate,:new.enddate);
+end;
+insert into vw_product_price values(1111,'Toy',4000,2000,sysdate,sysdate+1)
+
+select * from product
+select * from price
+
+ALTER TRIGGER trigger_name DISABLE;
+ALTER TRIGGER trigger_name ENABLE;
+
+DROP TRIGGER IF EXISTS trigger_name;
+
+-------------------------- Exception handling
+/*
+PL/SQL treats all errors that occur in an anonymous block, procedure, or function as exceptions. The exceptions can have different causes such as coding mistakes, bugs, even hardware failures.
+It is not possible to anticipate all potential exceptions, however, you can write code to handle exceptions to enable the program to continue running as normal.
+
+The code that you write to handle exceptions is called an exception handler.
+
+A PL/SQL block can have an exception-handling section, which can have one or more exception handlers.
+
+BEGIN
+    -- executable section
+    ...
+    -- exception-handling section
+    EXCEPTION 
+        WHEN e1 THEN 
+            -- exception_handler1
+        WHEN e2 THEN 
+            -- exception_handler1
+        WHEN OTHERS THEN
+            -- other_exception_handler
+END;
+If the exception e1 occurred, the exception_handler1 runs. If the exception e2 occurred, the exception_handler2 executes. In case any other exception raises, then the other_exception_handler runs.
+
+After an exception handler executes, control transfers to the next statement of the enclosing block. If there is no enclosing block, then the control returns to the invoker if the exception handler is in a subprogram or host environment (SQL Developer or SQL*Plus) if the exception handler is in an anonymous block.
+*/
+--PL/SQL NO_DATA_FOUND exception example
+clear screen
+desc dept;
+set SERVEROUTPUT ON
+declare 
+  e_name emp.ename%type;
+  eno emp.empno%type:=&eno;
+  d_name dept.dname%type;
+  dno dept.deptno%type:=&dno;
+begin
+
+  select dname into d_name from dept where deptno=dno;
+  dbms_output.put_line('Department name: '||d_name);
+  
+  select ename into e_name from emp where empno=eno;
+  dbms_output.put_line('Employee name is: '||e_name);
+    
+  exception
+    when no_data_found then 
+      dbms_output.put_line('Employee '||eno||' does not exists');
+end;
+
+--------PL/SQL TOO_MANY_ROWS exception example
+set SERVEROUTPUT ON
+declare 
+  e_name emp.ename%type;
+  dno emp.deptno%type:=&dno;
+begin
+  select ename into e_name from emp where deptno=dno;
+  dbms_output.put_line('Employee name is: '||e_name);
+    
+  exception
+    when no_data_found then 
+      dbms_output.put_line('Employee does not exists');
+    WHEN TOO_MANY_ROWS THEN
+            dbms_output.put_line('The database returns more than one employee');  
+end;
